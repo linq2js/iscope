@@ -5,6 +5,14 @@ export interface IScope<T> {
   (): T;
 
   /**
+   * pass down scope value to specified func
+   * @param func
+   * @param args
+   * @param context
+   */
+  <U>(func: () => U, args?: IArguments | any[], context?: any): U;
+
+  /**
    * change value of scope and pass down that value to specified func
    * @param value
    * @param func
@@ -12,14 +20,6 @@ export interface IScope<T> {
    * @param context
    */
   <U>(value: T, func: () => U, args?: IArguments | any[], context?: any): U;
-
-  /**
-   * pass down scope value to specified func
-   * @param func
-   * @param args
-   * @param context
-   */
-  <U>(func: () => U, args?: IArguments | any[], context?: any): U;
 }
 
 export type IScopeItem = [IScope<any>, any];
@@ -51,15 +51,11 @@ declare function iscope<T>(
 ): T;
 
 /**
- * create a iscope with specified initializer
- * @param init
- */
-declare function iscope<T>(init: () => T): IScope<T>;
-
-/**
  * create a iscope with specified initial value
  * @param init
  */
-declare function iscope<T>(init: T): IScope<T>;
+declare function iscope<T>(init: Initializer<T> | T): IScope<T>;
+
+type Initializer<T> = () => T;
 
 export default iscope;

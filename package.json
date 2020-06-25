@@ -1,6 +1,6 @@
 {
   "name": "iscope",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Create a scope that can be accessed from nested function calls",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
